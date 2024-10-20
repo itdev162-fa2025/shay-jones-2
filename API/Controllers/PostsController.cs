@@ -21,5 +21,18 @@ namespace API.Controllers
         {
             return this._context.Posts.ToList();
         }
+
+        [HttpGet("{id}", Name = "GetPostById")]
+         public ActionResult<Post> GetById(int id)
+        {
+            var post = _context.Posts.Find(id);
+
+            if (post is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(post);
+        }
     }
 }
